@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { ErrorMessage, SuccessMessage } from "../utils/InfoMessage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const URL = "https://contactmanagementbackend-mzzn.onrender.com"
+
 
 const Contact = () => {
   const [data, setData] = useState([]);
   const [sorting, setSorting] = useState(false);
 
   const fetchData = async () => {
-    const URL = "https://contactmanagementbackend-mzzn.onrender.com"
     const response = await axios.get(`${URL}/contact/data`);
     console.log(response.data);
     setData(response.data);
@@ -21,7 +22,7 @@ const Contact = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/contact/delete/${id}`);
+      await axios.delete(`${URL}/contact/delete/${id}`);
 
       setData((prev) => prev.filter((item) => item._id !== id));
       SuccessMessage("Contact deleted Successfully");
@@ -37,8 +38,8 @@ const Contact = () => {
       setSorting(next);
 
       const url = next
-        ? "http://localhost:4000/contact/data/sort?sort=az"
-        : "http://localhost:4000/contact/data";
+        ? `${URL}/contact/data/sort?sort=az`
+        : `${URL}/contact/data`;
 
       const response = await axios.get(url);
       setData(response.data);
