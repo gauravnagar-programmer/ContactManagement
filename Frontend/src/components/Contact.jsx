@@ -9,7 +9,8 @@ const Contact = () => {
   const [sorting, setSorting] = useState(false);
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:4000/contact/data");
+    const URL = "https://contactmanagementbackend-mzzn.onrender.com"
+    const response = await axios.get(`${URL}/contact/data`);
     console.log(response.data);
     setData(response.data);
   };
