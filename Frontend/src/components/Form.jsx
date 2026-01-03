@@ -36,8 +36,9 @@ const Form = () => {
     return;
   }
 
+  const URL = "https://contactmanagementbackend-mzzn.onrender.com"
   const res = await axios.post(
-    'http://localhost:4000/contact/form',
+    `${URL}/contact/form`,
     inputField
   );
 
